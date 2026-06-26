@@ -1,0 +1,18 @@
+{
+  "agent_name": "Slack Summary Agent",
+  "agent_id": "6a3ee8a015ccc387243f7366",
+  "description": "Posts concise KPI summary to Slack.",
+  "agent_type": "json",
+  "accessor": "result",
+  "has_module_outputs": false,
+  "tools": ["slack/SLACK_CHAT_POST_MESSAGE"],
+  "schema": {
+    "type": "object",
+    "properties": {
+      "status": { "type": "string" },
+      "channel": { "type": "string" },
+      "message_posted": { "type": "string" },
+      "posted_at": { "type": "string" }
+    }
+  }
+}

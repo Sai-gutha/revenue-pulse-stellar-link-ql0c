@@ -1,0 +1,29 @@
+{
+  "agent_name": "Market Data Scraper",
+  "agent_id": "6a3ee883ccf651cec4383946",
+  "description": "Scrapes latest revenue/AUM/inflows via native web search.",
+  "agent_type": "json",
+  "accessor": "result",
+  "has_module_outputs": false,
+  "schema": {
+    "type": "object",
+    "properties": {
+      "total_revenue": { "type": "number" },
+      "aum": { "type": "number" },
+      "net_inflows": { "type": "number" },
+      "top_movers": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "ticker": { "type": "string" },
+            "change_pct": { "type": "number" },
+            "note": { "type": "string" }
+          }
+        }
+      },
+      "raw_sources": { "type": "array", "items": { "type": "string" } },
+      "scrape_summary": { "type": "string" }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "app_name": "Daily Market Revenue & AUM Analyzer",
+  "nodes": [
+    { "id": "input_node", "type": "Input", "label": "User Input", "nodeCategory": "input" },
+    { "id": "manager", "type": "Agent", "label": "Daily Revenue Coordinator", "nodeCategory": "agent", "agent_id": "6a3ee8b150540b159f3503a9" },
+    { "id": "scraper", "type": "Agent", "label": "Market Data Scraper", "nodeCategory": "agent", "agent_id": "6a3ee883ccf651cec4383946" },
+    { "id": "analyzer", "type": "Agent", "label": "Revenue & AUM Analyzer", "nodeCategory": "agent", "agent_id": "6a3ee88cadecb9029d44cbdb" },
+    { "id": "report", "type": "Agent", "label": "Report Generator Agent", "nodeCategory": "agent", "agent_id": "6a3ee89215ccc387243f7364" },
+    { "id": "email", "type": "Agent", "label": "Email Distribution Agent", "nodeCategory": "agent", "agent_id": "6a3ee899ccf651cec4383948" },
+    { "id": "slack", "type": "Agent", "label": "Slack Summary Agent", "nodeCategory": "agent", "agent_id": "6a3ee8a015ccc387243f7366" },
+    { "id": "output_node", "type": "Output", "label": "Snapshot + Distribution", "nodeCategory": "end" }
+  ],
+  "edges": [
+    { "source": "input_node", "target": "manager" },
+    { "source": "manager", "target": "scraper" },
+    { "source": "manager", "target": "analyzer" },
+    { "source": "analyzer", "target": "output_node" },
+    { "source": "input_node", "target": "report" },
+    { "source": "input_node", "target": "email" },
+    { "source": "input_node", "target": "slack" },
+    { "source": "report", "target": "output_node" },
+    { "source": "email", "target": "output_node" },
+    { "source": "slack", "target": "output_node" }
+  ]
+}

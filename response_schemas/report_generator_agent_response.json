@@ -1,0 +1,23 @@
+{
+  "agent_name": "Report Generator Agent",
+  "agent_id": "6a3ee89215ccc387243f7364",
+  "description": "Generates PDF + Excel daily reports.",
+  "agent_type": "json",
+  "accessor": "result",
+  "has_module_outputs": true,
+  "module_outputs_example": {
+    "artifact_files": [
+      { "file_url": "https://example.com/report.pdf", "file_name": "report.pdf" }
+    ]
+  },
+  "schema": {
+    "type": "object",
+    "properties": {
+      "report_title": { "type": "string" },
+      "format": { "type": "string" },
+      "summary": { "type": "string" },
+      "download_url": { "type": "string" },
+      "generated_at": { "type": "string" }
+    }
+  }
+}

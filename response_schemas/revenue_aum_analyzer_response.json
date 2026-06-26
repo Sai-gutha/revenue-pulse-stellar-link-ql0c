@@ -1,0 +1,30 @@
+{
+  "agent_name": "Revenue & AUM Analyzer",
+  "agent_id": "6a3ee88cadecb9029d44cbdb",
+  "description": "Computes variance, trends, anomalies vs prior snapshot.",
+  "agent_type": "json",
+  "accessor": "result",
+  "has_module_outputs": false,
+  "schema": {
+    "type": "object",
+    "properties": {
+      "revenue_variance_pct": { "type": "number" },
+      "aum_variance_pct": { "type": "number" },
+      "inflow_variance_pct": { "type": "number" },
+      "anomaly_count": { "type": "number" },
+      "anomalies": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "label": { "type": "string" },
+            "severity": { "type": "string" },
+            "explanation": { "type": "string" }
+          }
+        }
+      },
+      "trend_summary": { "type": "string" },
+      "recommendation": { "type": "string" }
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "app_name": "Daily Market Revenue & AUM Analyzer",
+  "database": {
+    "db_name": "app_5bb4202c540a9cb27e338fbb",
+    "collections": ["daily_snapshots", "reports", "distribution_log", "distribution_config"],
+    "auth_enabled": false
+  },
+  "agents": {
+    "daily_revenue_coordinator": {
+      "agent_id": "6a3ee8b150540b159f3503a9",
+      "role": "manager",
+      "managed_agent_ids": ["6a3ee883ccf651cec4383946", "6a3ee88cadecb9029d44cbdb"]
+    },
+    "market_data_scraper": {
+      "agent_id": "6a3ee883ccf651cec4383946",
+      "role": "sub-agent"
+    },
+    "revenue_aum_analyzer": {
+      "agent_id": "6a3ee88cadecb9029d44cbdb",
+      "role": "sub-agent"
+    },
+    "report_generator_agent": {
+      "agent_id": "6a3ee89215ccc387243f7364",
+      "role": "independent",
+      "file_output": true
+    },
+    "email_distribution_agent": {
+      "agent_id": "6a3ee899ccf651cec4383948",
+      "role": "independent",
+      "tools": ["gmail/GMAIL_SEND_EMAIL"]
+    },
+    "slack_summary_agent": {
+      "agent_id": "6a3ee8a015ccc387243f7366",
+      "role": "independent",
+      "tools": ["slack/SLACK_CHAT_POST_MESSAGE"]
+    }
+  },
+  "schedules": [
+    {
+      "schedule_id": "6a3ee8b5625044e1169dd75f",
+      "agent_id": "6a3ee8b150540b159f3503a9",
+      "agent_name": "Daily Revenue Coordinator",
+      "cron_expression": "0 8 * * 1-5",
+      "timezone": "America/New_York",
+      "message": "Run the daily market revenue and AUM analysis for today's date. Pull latest figures, compute variance vs yesterday, and produce a full snapshot.",
+      "is_active": false,
+      "human_readable": "Weekdays at 8:00 AM ET"
+    }
+  ],
+  "rag_ids": []
+}

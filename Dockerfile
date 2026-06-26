@@ -1,0 +1,43 @@
+# Build stage
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies. Using `npm install` (not `npm ci`) so that
+# `"lyzr-architect": "latest"` resolves fresh on every build — matches
+# Netlify's behavior. Tradeoff: non-reproducible builds across time.
+RUN npm install --legacy-peer-deps --no-audit --no-fund
+
+# Copy source files
+COPY . .
+
+# Build the application
+RUN npm run build
+
+# Production stage
+FROM node:20-alpine AS runner
+
+WORKDIR /app
+
+ENV NODE_ENV=production
+
+# Create non-root user
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
+# Copy built application (standalone output)
+COPY --from=builder /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+USER nextjs
+
+EXPOSE 3333
+
+ENV PORT=3333
+ENV HOSTNAME="0.0.0.0"
+
+CMD ["node", "server.js"]

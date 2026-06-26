@@ -1,0 +1,45 @@
+{
+  "agent_name": "Daily Revenue Coordinator",
+  "agent_id": "6a3ee8b150540b159f3503a9",
+  "description": "Manager agent that orchestrates daily scrape + analysis pipeline.",
+  "agent_type": "json",
+  "accessor": "result",
+  "has_module_outputs": false,
+  "schema": {
+    "type": "object",
+    "properties": {
+      "snapshot_date": { "type": "string" },
+      "total_revenue": { "type": "number" },
+      "aum": { "type": "number" },
+      "net_inflows": { "type": "number" },
+      "revenue_variance_pct": { "type": "number" },
+      "aum_variance_pct": { "type": "number" },
+      "inflow_variance_pct": { "type": "number" },
+      "anomaly_count": { "type": "number" },
+      "top_movers": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "ticker": { "type": "string" },
+            "change_pct": { "type": "number" },
+            "note": { "type": "string" }
+          }
+        }
+      },
+      "anomalies": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "label": { "type": "string" },
+            "severity": { "type": "string" },
+            "explanation": { "type": "string" }
+          }
+        }
+      },
+      "raw_sources": { "type": "array", "items": { "type": "string" } },
+      "summary": { "type": "string" }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "agent_name": "Email Distribution Agent",
+  "agent_id": "6a3ee899ccf651cec4383948",
+  "description": "Sends daily report via Gmail.",
+  "agent_type": "json",
+  "accessor": "result",
+  "has_module_outputs": false,
+  "tools": ["gmail/GMAIL_SEND_EMAIL"],
+  "schema": {
+    "type": "object",
+    "properties": {
+      "status": { "type": "string" },
+      "recipients": { "type": "array", "items": { "type": "string" } },
+      "subject": { "type": "string" },
+      "message": { "type": "string" },
+      "sent_at": { "type": "string" }
+    }
+  }
+}
